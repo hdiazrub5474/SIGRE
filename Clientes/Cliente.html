@@ -1,0 +1,30 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" href="css/estilos_proveedor.css">
+</head>
+<body>
+   <h1><img src="img/logo.jpg" alt="" class="logo"></h1>
+    <form action="Proveedor.php"  method="post" class="form-register">
+        <h2 class="form__titulo">REGISTRAR PROVEEDORES</h2>
+        <div class="contenedor-inputs">
+            <input type="text" name="numeroIdent" placeholder="Identificación" class="input-100" required>
+            <input type="text" name="nombre" placeholder="Nombre" class="input-100" required>
+            <!--<input type="text" name="tipoIdent" placeholder="tipo de identificación" class="input-100" required>-->
+            <select name="tipoIdent" class="input-100" required>
+                <option value="">Seleccionar</option>
+                <option value="NIT">NIT</option>
+                <option value="CC">CEDULA</option>
+            </select>
+            
+            
+            <input type="text" name="telefono" placeholder="telefono" class="input-100" required>
+            <input type="text" name="direccion" placeholder="direccion" class="input-100" required>
+            <input type="submit" value="REGISTRAR" class="btn-enviar">
+            
+        </div>
+    </form>
+</body>
+</html>
