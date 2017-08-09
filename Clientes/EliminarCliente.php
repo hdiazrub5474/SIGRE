@@ -8,45 +8,45 @@
 </head>
 <body>
    
-   <h1><img src="img/logo.jpg" alt="" class="logo"></h1>    
-   <!--<h2 class="form__titulo">CONSULTAR USUARIOS</h2>-->
+   <h1><img src="img/logo_sigre_2.jpg" alt="" class="logo"></h1>    
+   
     <div class="datagrid">
         <table cellpadding="2" cellspacing="2">
             <thead>
                <tr>
-                <th colspan="5" class="form__titulo">ELIMINAR DE PROVEEDORES</th>       
+                <th colspan="6" class="form__titulo">ELIMINAR DE CLIENTE</th>       
                </tr>
                
                <tr>
                 <th colspan="1" rowspan="1" align="center">IDENTIFICACIÓN</th>
                 <th colspan="1" rowspan="1" align="center">NOMBRE</th>
-                <th colspan="1" rowspan="1" align="center">TIPO DE DOCUMENTO</th>
                 <th colspan="1" rowspan="1" align="center">TELÉFONO</th>
+                <th colspan="1" rowspan="1" align="center">CORREO</th>
                 <th colspan="1" rowspan="1" align="center">DIRECCIÓN</th>
-                
+                <th colspan="1" rowspan="1" align="center">CIUDAD</th>
                </tr>
             </thead>
             
             <tbody>
                 <?php
-                    $numeroIdent=$_REQUEST['numeroIdent'];
+                
+                    $NitCli=$_REQUEST['NitCli'];
                 
                     include('configuracion.php');
                 
-                    //$consulta="SELECT * FROM proveedor";
-                    $consulta="SELECT * FROM proveedor WHERE numeroIdent='$numeroIdent'";
+                    $consulta="SELECT * FROM clientes WHERE NitCli='$NitCli'";
                 
                     $resultado=mysqli_query($conexion, $consulta);
             
                     while ($registro = mysqli_fetch_array($resultado)){
                         echo "
                             <tr>
-                                <td width='150'>".$registro['numeroIdent']."</td>
-                                <td width='150'>".$registro['nombre']."</td>
-                                <td width='150'>".$registro['tipoIdent']."</td>
-                                <td width='150'>".$registro['telefono']."</td>
-                                <td width='700'>".$registro['direccion']."</td>
-                                                                                            
+                                <td width='150'>".$registro['NitCli']."</td>
+                                <td width='150'>".$registro['NomCli']."</td>
+                                <td width='150'>".$registro['NroTel']."</td>
+                                <td width='150'>".$registro['Email']."</td>
+                                <td width='700'>".$registro['NomDir']."</td>
+                                <td width='700'>".$registro['NomCiu']."</td>                                                            
                             </tr>
                             ";
                     }   
@@ -58,11 +58,11 @@
     <div class="contenedor-inputs">    
        
         
-      <input type="button" value="ELIMINAR REGISTRO" class="btn-enviar" onclick="eliminarregistro('<?php echo "$numeroIdent"; ?>')" >
+      <input type="button" value="ELIMINAR REGISTRO" class="btn-enviar" onclick="eliminarregistro('<?php echo "$NitCli"; ?>')" >
       <script>
-          function eliminarregistro(numeroIdent){
+          function eliminarregistro(NitCli){
                   
-                  window.location.href='eliminar.php?del_numeroIdent=' + numeroIdent+'';
+                  window.location.href='eliminar.php?del_NitCli=' + NitCli+'';
                   return true;
               
           }

@@ -1,16 +1,17 @@
 <?php
 
 session_start();
-$userlogin = $_SESSION['usuario_logueado'];
+$userlogin = $_SESSION['sesion_exito'];
 
 
-$CodUsu=$_REQUEST['del_CodUsu'];
+$username=$_REQUEST['del_username'];
 
+//echo "$username";
 
 //validar campos vacios
-if ($userlogin==$CodUsu){
+if ($userlogin==$username){
     echo '<script>
-            alert("No se puede eliminar el usuario logueado");
+            alert("No se puede eliminar el usuario logeado");
             window.history.go(-3);
           </script>';
     exit;
@@ -19,18 +20,19 @@ if ($userlogin==$CodUsu){
 
 include('conusu.php');
                 
-
-$eliminar="DELETE FROM usuarios WHERE CodUsu='$CodUsu'";
+//$consulta="SELECT * FROM usuario";
+$eliminar="DELETE FROM usuario WHERE username='$username'";
                 
 $resultado=mysqli_query($conexion, $eliminar);
 if (!$resultado) {
-    
+    //echo 'Error al registrarse';
     echo '<script>
             alert("Error al registrarse");
             window.history.go(-1);
          </script>';
 }else{
-        
+    //echo 'usuario registrado exitosamente';
+    
     echo '<script>
             alert("Usuario eliminado exitosamente");
             window.history.go(-3);

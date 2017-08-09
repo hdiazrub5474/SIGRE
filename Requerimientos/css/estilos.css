@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #fff;
+    background: #f2f2f2;
+    font-family: Arial;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 10px;
+}
+
+.principal {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.aux {
+    text-align: center;
+    background: #00796B;
+}
+
+.header {
+    background: #303F9F;
+}
+
+.sidebar1 {
+    background: #1976D2;
+}
+
+.contenido {
+    background: #000;
+}
+
+.sidebar2 {
+    background: #E64A19;
+}
+
+.footer {
+    background: #388E3C;
+}

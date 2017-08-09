@@ -14,14 +14,7 @@
         </label>
         <nav class="menu">
             <ul>
-                <!--<li class="submenu"><a href="#">Usuarios<span class="icon-dowm-open"></span></a>
-                    <ul>
-                        <li><a href="usuario.php">Registrar Usuario</a></li>
-                        <li><a href="Consultar_Usuarios/ConsultarUsuarios.php">Consultar Usuario</a></li>
-                        <li><a href="Cambio_Login/cambio_login.php">Cambio de clave</a></li>
-                    </ul>
-                </li>-->
-                
+                                
                 <li class="submenu"><a href="#">Usuarios<span class="icon-dowm-open"></span></a>
                     <ul>
                       <?php   
@@ -37,7 +30,6 @@
                         
                       ?>   
                         
-                        <!--<li><a href="Consultar_Usuarios/ConsultarUsuarios.php">Consultar Usuario</a></li>-->
                         <li><a href="Cambio_Login/cambio_login.php">Cambio de clave</a></li>
                     </ul>
                 </li>
@@ -45,25 +37,19 @@
                 
                 <li class="submenu"><a href="#">Clientes</a>
                     <ul>
-                        <li><a href="Proveedor/proveedor.html">Registrar Proveedor</a></li>
-                        <li><a href="Proveedor/ConsultarProveedor.php">Consultar Proveedor</a></li>
+                        <li><a href="Clientes/Cliente.html">Registrar Cliente</a></li>
+                        <li><a href="Clientes/ConsultarCliente.php">Consultar Cliente</a></li>
                     </ul>
                 </li>
                 <li class="submenu"><a href="#">Modulos</a>
                     <ul>
-                        <li><a href="Articulos/registraritem.html">Registrar Artículos</a></li>
-                        <li><a href="Articulos/ConsultarArticulo.php">Consultar Articulos</a></li>
+                        <li><a href="Modulos/Modulo.html">Registrar Modulo</a></li>
+                        <li><a href="Modulos/ConsultarModulo.php">Consultar Modulo</a></li>
                     </ul>
                 </li>
-                <li class="submenu"><a href="#">Pedidos</a>
+                <li class="submenu"><a href="">Requerimientos</a>
                     <ul>
-                        <li><a href="Pedido/Pedido.php">Registrar Pedidos</a></li>
-                        <li><a href="Pedido/ConsultarPedidos.php">Consultar Pedidos</a></li>
-                    </ul>
-                </li>
-                <li class="submenu"><a href="">Gestión</a>
-                    <ul>
-                        <li><a href="#">Registrar Ventas</a></li>
+                        <li><a href="Requerimientos/ConsultarRequerimientos.php">Consultar Solicitudes</a></li>
                         <li><a href="#">Consultar Ventas</a></li>
                     </ul>
                 </li>

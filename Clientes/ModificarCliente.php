@@ -3,52 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Registro</title>
-    <link rel="stylesheet" href="css/estilos_proveedor.css">
+    <link rel="stylesheet" href="css/estilos_cliente.css">
     
     <script>
         function Deshabilitar(){
-            var numeroIdent = document.getElementById("numeroIdent");
+            var numeroIdent = document.getElementById("NitCli");
             //numeroIdent.disabled = true;
         }
     </script>
     
 </head>
 <body onload="Deshabilitar()">
-   <h1><img src="img/logo.jpg" alt="" class="logo"></h1>
-    <form action="ModProveedor.php"  method="post" class="form-register">
-        <h2 class="form__titulo">MODIFICAR PROVEEDORES</h2>
+   <h1><img src="img/logo_sigre_2.jpg" alt="" class="logo"></h1>
+    <form action="ModCliente.php"  method="post" class="form-register">
+        <h2 class="form__titulo">MODIFICAR CLIENTES</h2>
         <div class="contenedor-inputs">
            
            <?php
             
-            $numeroIdent=$_REQUEST['numeroIdent'];
+            $NitCli=$_REQUEST['NitCli'];
             
             //Se invoca conexion a base de datos
             include('configuracion.php');
             //Se realiza consulta a la tabla
-            $consulta="SELECT * FROM proveedor WHERE numeroIdent='$numeroIdent'";
+            $consulta="SELECT * FROM clientes WHERE NitCli='$NitCli'";
             //Se ejecuta consulta
             $resultado=mysqli_query($conexion, $consulta);
             $registro = mysqli_fetch_array($resultado);
-            
-                
-            //echo $registro['nombres'];
-            
+                                    
             ?>
            
            
-            <input type="text" name="numeroIdent" value="<?php echo $registro['numeroIdent'] ?>" placeholder="Identificación" class="input-100" id="numeroIdent" required>
-            <input type="text" name="nombre" value="<?php echo $registro['nombre'] ?>" placeholder="Nombre" class="input-100" required>
-            <!--<input type="text" name="tipoIdent" placeholder="tipo de identificación" class="input-100" required>-->
-            <select name="tipoIdent" class="input-100" required>
-                <option value="<?php echo $registro['tipoIdent'] ?>"><?php echo $registro['tipoIdent'] ?></option>
-                <option value="NIT">NIT</option>
-                <option value="CC">CEDULA</option>
-            </select>
-            
-            
-            <input type="text" name="telefono" value="<?php echo $registro['telefono'] ?>" placeholder="telefono" class="input-100" required>
-            <input type="text" name="direccion" value="<?php echo $registro['direccion'] ?>" placeholder="direccion" class="input-100" required>
+            <input type="hidden" name="NitCli" value="<?php echo $registro['NitCli'] ?>" placeholder="Identificación" class="input-100" id="numeroIdent" required>
+            <input type="text" name="NomCli" value="<?php echo $registro['NomCli'] ?>" placeholder="Nombre" class="input-100" required>
+            <input type="text" name="NroTel" value="<?php echo $registro['NroTel'] ?>" placeholder="Teléfono" class="input-100" required>
+            <input type="text" name="Email" value="<?php echo $registro['Email'] ?>" placeholder="Correo" class="input-100" required>
+            <input type="text" name="NomDir" value="<?php echo $registro['NomDir'] ?>" placeholder="Direccion" class="input-100" required>
+            <input type="text" name="NomCiu" value="<?php echo $registro['NomCiu'] ?>" placeholder="Ciudad" class="input-100" required>
             <input type="submit" value="MODIFICAR REGISTRAR" class="btn-enviar">
             
         </div>

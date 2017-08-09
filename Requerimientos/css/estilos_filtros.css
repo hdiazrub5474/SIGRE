@@ -1,0 +1,36 @@
+
+.tabla {
+    background: #204862;
+    width: 100%;
+    border: 0px;
+    
+    text-align: center;
+    margin-left: 25%;
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    border: 1px solid #000;
+}
+
+
+.tabla th {
+    width: 20%;
+    border: 0px;
+}
+
+
+.tabla {
+    background: #204862;
+    width: 100%;
+    border: 0px;
+}
+
+
+.tabla th {
+    width: 20%;
+    border: 0px;
+}
+
+
+
+
