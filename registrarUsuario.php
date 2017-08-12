@@ -18,7 +18,8 @@ $Email  = $_POST["Email"];
 $Clave  = $_POST["Clave"];
 $NitCli = $_POST["NitCli"];
 $idPerfil = $_POST["idPerfil"];
-$time = date("Ymdhis");
+$time = date("Ymd");
+//$time = date("Ymdhis");
 
 //insertar tabla usuarios
 $insertar = "INSERT INTO usuarios(CodUsu, NitUsu, NomUsu, NroTel, Email, Clave, UsuCre, Feccre, NitCli, PERFILES_idPerfil) VALUES ('$CodUsu', '$NitUsu', '$NomUsu', '$NroTel', '$Email', '$Clave', '$userlogin', $time, $NitCli, '$idPerfil')";

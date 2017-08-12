@@ -15,7 +15,8 @@ $Email  = $_POST["Email"];
 $Clave  = $_POST["Clave"];
 $NitCli = $_POST["NitCli"];
 $idPerfil = $_POST["Perfil"];
-$time = date("Ymdhis");
+$time = date("Ymd");
+//$time = date("Ymdhis");
 
 
 //consulta para insertar

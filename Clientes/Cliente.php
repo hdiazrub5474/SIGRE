@@ -11,7 +11,8 @@ $NroTel = $_POST["NroTel"];
 $Email  = $_POST["Email"];
 $NomDir = $_POST["NomDir"];
 $NomCiu = $_POST["NomCiu"];
-$time   = date("Ymdhis");
+$time   = date("Ymd");
+//$time = date("Ymdhis");
 
 //consulta para insertar
 $insertar = "INSERT INTO clientes(NitCli, NomCli, NroTel, Email, NomDir, NomCiu, UsuCre, FecCre) VALUES ('$NitCli', '$NomCli', '$NroTel ', '$Email', '$NomDir', '$NomCiu', '$userlogin', '$time')";

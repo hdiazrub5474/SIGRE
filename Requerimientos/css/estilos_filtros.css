@@ -1,6 +1,6 @@
 
 .tabla {
-    background: #204862;
+    background: #D3D3D3;
     width: 100%;
     border: 0px;
     
@@ -8,29 +8,24 @@
     margin-left: 25%;
     width: 100%;
     max-width: 800px;
-    background: #fff;
-    border: 1px solid #000;
+    
+    
 }
 
 
 .tabla th {
     width: 20%;
     border: 0px;
+    padding-top: 5px;
+    height: 30px;
 }
 
-
-.tabla {
-    background: #204862;
-    width: 100%;
-    border: 0px;
+.selector {
+    width: 200px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 10px;    
 }
-
-
-.tabla th {
-    width: 20%;
-    border: 0px;
-}
-
 
 
 

@@ -11,7 +11,8 @@ $NroTel = $_POST["NroTel"];
 $Email  = $_POST["Email"];
 $NomDir = $_POST["NomDir"];
 $NomCiu = $_POST["NomCiu"];
-$time   = date("Ymdhis");
+$time   = date("Ymd");
+//$time = date("Ymdhis");
 //consulta para insertar
 $actualizar = "UPDATE clientes SET NomCli='$NomCli', NroTel='$NroTel', Email='$Email', NomDir='$NomDir', NomCiu='$NomCiu', UsuCre='$userlogin', FecCre='$time' WHERE NitCli ='$NitCli'";
 

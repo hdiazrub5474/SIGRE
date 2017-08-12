@@ -7,7 +7,8 @@ include 'configuracion.php';
 //recibir los datos y almacenarlos en variables
 $idMod  = $_POST["idMod"];
 $NomMod = $_POST["NomMod"];
-$time   = date("Ymdhis");
+$time   = date("Ymd");
+//$time = date("Ymdhis");
 //consulta para insertar
 $actualizar = "UPDATE modulos SET NomMod='$NomMod', UsuCre='$userlogin', FecCre='$time' WHERE idMod ='$idMod'";
 

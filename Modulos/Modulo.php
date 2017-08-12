@@ -6,7 +6,8 @@ $userlogin = $_SESSION['usuario_logueado'];
 include 'configuracion.php';
 //recibir los datos y almacenarlos en variables
 $NomMod = $_POST["NomMod"];
-$time   = date("Ymdhis");
+$time   = date("Ymd");
+//$time = date("Ymdhis");
 
 //consulta para insertar
 $insertar = "INSERT INTO modulos(NomMod, UsuCre, FecCre) VALUES ('$NomMod', '$userlogin', '$time')";
