@@ -22,7 +22,8 @@
                        session_start();
                        $nivel = $_SESSION['nivel_usuario'];
 
-                       if ($nivel == 1 || $nivel == 2){
+                       //if ($nivel == 1 || $nivel == 2){
+                       if ($nivel == 1 ){
                            
                          echo "<li><a href='usuario.php'>Registrar Usuario</a></li>";
                          echo "<li><a href='Consultar_Usuarios/ConsultarUsuarios.php'>Consultar Usuario</a></li>";
@@ -34,25 +35,43 @@
                     </ul>
                 </li>
                 
+                <?php
+                                    
+                    $nivel = $_SESSION['nivel_usuario'];
                 
-                <li class="submenu"><a href="#">Clientes</a>
-                    <ul>
-                        <li><a href="Clientes/Cliente.html">Registrar Cliente</a></li>
-                        <li><a href="Clientes/ConsultarCliente.php">Consultar Cliente</a></li>
-                    </ul>
-                </li>
-                <li class="submenu"><a href="#">Modulos</a>
-                    <ul>
-                        <li><a href="Modulos/Modulo.html">Registrar Modulo</a></li>
-                        <li><a href="Modulos/ConsultarModulo.php">Consultar Modulo</a></li>
-                    </ul>
-                </li>
-                <li class="submenu"><a href="">Requerimientos</a>
-                    <ul>
-                        <li><a href="Requerimientos/ConsultarRequerimientos.php">Consultar Solicitudes</a></li>
-                        <li><a href="#">Consultar Ventas</a></li>
-                    </ul>
-                </li>
+                    if ($nivel == 1){
+                        echo "<li class='submenu'><a href='#'>Clientes</a>";
+                            echo "<ul>";
+                                echo "<li><a href='Clientes/Cliente.html'>Registrar Cliente</a></li>";
+                                echo "<li><a href='Clientes/ConsultarCliente.php'>Consultar Cliente</a></li>";
+                            echo "</ul>";
+                        echo "</li>";
+                    }
+                
+                
+                    if ($nivel == 1 ){
+                        echo "<li class='submenu'><a href='#'>Modulos</a>";
+                            echo "<ul>";
+                                echo "<li><a href='Modulos/Modulo.html'>Registrar Modulo</a></li>";
+                                echo "<li><a href='Modulos/ConsultarModulo.php'>Consultar Modulo</a></li>";
+                            echo "</ul>";
+                        echo "</li>";
+                    }
+                ?>
+                    
+                <?php
+                    echo "<li class='submenu'><a href='#'>Requerimientos</a>";
+                        echo "<ul>";
+                            if ($nivel == 1){
+                                echo "<li><a href='Requerimientos/RegistrarRequerimiento.php'>Registrar Solicitudes</a></li>";
+                                echo "<li><a href='Requerimientos/ConsultarRequerimientos.php'>Consultar Solicitudes</a></li>";
+                            }else{
+                                echo "<li><a href='Requerimientos/ConsultarSolicitudIngeniero.php'>Consultar Solicitudes</a></li>";
+                            }
+                        echo "</ul>";
+                    echo "</li>";
+                ?>
+                
                 <li><a href="Nosotros/Nosotros.html">Nosotros</a></li>
             </ul>
             

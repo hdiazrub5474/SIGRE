@@ -24,11 +24,6 @@ $time = date("Ymd");
 //insertar tabla usuarios
 $insertar = "INSERT INTO usuarios(CodUsu, NitUsu, NomUsu, NroTel, Email, Clave, UsuCre, Feccre, NitCli, PERFILES_idPerfil) VALUES ('$CodUsu', '$NitUsu', '$NomUsu', '$NroTel', '$Email', '$Clave', '$userlogin', $time, $NitCli, '$idPerfil')";
 
-//insertar tabla Perfiles
-//$insertarPerfil = "INSERT INTO usuarios_has_perfiles(USUARIOS_CodUsu, PERFILES_idPerfil) VALUES('$CodUsu', '$idPerfil')";
-
-
-
 //verificar si ya existe el usuario en la base de datos
 $verificar_usuario = mysqli_query($conexion, "SELECT * FROM usuarios WHERE CodUsu ='$CodUsu'");
 if (mysqli_num_rows($verificar_usuario) > 0){

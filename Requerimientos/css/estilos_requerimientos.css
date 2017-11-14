@@ -5,14 +5,13 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background: #D3D3D3;
+    background: #204862;
 }
 
 h1 {
     color: #fff;
     text-align: center;
 }
-
 
 .logo {
     width: 95%;
@@ -27,46 +26,6 @@ h1 {
     border-radius: 7px;
 }
 
-.lista tr {
-    border: 1px solid #000;
- 
-}
-
-.lista th {
-    border: 1px solid #000;
-    font-size: 15px;
-  
-}
-
-.lista td {
-    border: 1px solid #000;
-    padding: 1px;
-    font-size: 12px;
-    width: auto;
-}
-
-.titulo_lista {
-    background: #204862;
-    color: #fff;
-    font-family:monospace;
-}
-
-.lista {
-    
-    text-align: center;
-    margin-left: 1%;
-    width: 100%;
-    max-width: 1600px;
-    background: #fff;
-    border: 1px solid #000;
-    border-collapse: collapse;    
-   
-}
-
-.form_buscar {
-    margin-left: 25%;
-}
-    
 .form__titulo {
     background: #4E94AB;
     color: #fff;
@@ -76,11 +35,11 @@ h1 {
     font-size: 20px;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
-    border-bottom: 2px solid crimson;
+    border-bottom: 5px solid crimson;
 }
 
 .contenedor-inputs{
-    padding: 10px 40px;
+    padding: 10px 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;   
@@ -91,9 +50,7 @@ input{
     padding: 10px;
     font-size: 16px;
     border-radius: 10px;
-    border: 1px solid darkgray;
-    padding-top: 5px;
-    height: 30px;
+    border: 1px solid darkgray
 }
 
 .input-48 {
@@ -102,6 +59,7 @@ input{
 
 .input-100{
     width: 100%;
+    
 }
 
 .input-textarea{
@@ -111,7 +69,6 @@ input{
     max-width: 450px;
     margin-bottom: 20px;
     margin-left: auto;
-    color: aqua;
 }
 
 
@@ -135,10 +92,9 @@ input{
     font-size: 14px;
 }
 
-
-
-
-
-
-
-
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
