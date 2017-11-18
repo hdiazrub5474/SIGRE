@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +20,7 @@
            <thead>
                 
                 <?php
-                    session_start();
+                    //session_start();
                     $userlogin = $_SESSION['usuario_logueado'];
                 ?>
                                                                 
@@ -103,7 +106,7 @@
    
      
     <div class="datagrid">
-        <table cellpadding="2" cellspacing="2" class="lista">
+        <table cellpadding="2" cellspacing="2" class="lista" id="myTable">
             <thead>
                <tr>
                 <th colspan="13" class="form__titulo">CONSULTA DE SOLICITUDES</th>       
@@ -587,10 +590,11 @@
             </tbody>    
         </table>
     </div>
-    
+        <input type="button" onclick="tableToExcel('myTable', 'Solicitudes')" value="Exportar a Excel" class="Excel">
     </div>
     
-    
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="js/TableToExcel.js"></script>     
     
 </body>
 </html>

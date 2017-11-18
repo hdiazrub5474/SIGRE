@@ -12,14 +12,27 @@ include 'conusu.php';
 //recibir los datos y almacenarlos en variables
 $idReq = $_POST["idReq"];
 $CodUsu  = $_POST["CodUsu"];
-$FecDes = $_POST["FecDes"];
+$CodInt = $_POST["CodInt"];
+//$FecDes = $_POST["FecDes"];
 $FecCal = $_POST["FecCal"];
-$Estado = "Desarrollo";
+$Estado = $_POST["Estado"];
+$NuevoEstado = "Desarrollo";
 $time = date("Ymd");
 $Email = "hd.solutions.sas@gmail.com";
 $CodInt = $_POST["CodInt"];
 $NomReq = $_POST["NomReq"];
 $NomUsu = "";
+
+if ($Estado !== "Pendiente Asignacion"){
+    
+        echo '<script>
+            alert("Requerimiento no puede ser Asignado, estado no aplica");
+            window.history.go(-2);
+          </script>';
+        exit;
+    
+}
+
 
 //consultar correo del usuario
 $consultar = "SELECT Email, NomUsu FROM usuarios WHERE CodUsu = '$CodUsu'";
@@ -34,9 +47,10 @@ while ($registro = mysqli_fetch_array($resultadoconsulta)){
 
 
 //insertar tabla de solicitudes
-$actualizar = "UPDATE solicitud SET UsuAsig='$CodUsu', FecDes='$FecDes', FecCal='$FecCal', Estado='$Estado' WHERE idReq ='$idReq'";
+$actualizar = "UPDATE solicitud SET UsuAsig='$CodUsu', FecDes='$time', FecCal='$FecCal', Estado='$NuevoEstado' WHERE idReq ='$idReq'";
 
-
+$actualizarCalidad = "UPDATE calidad SET FecCal='$FecCal' WHERE CodInt ='$CodInt'";
+$resultadoCalidad = mysqli_query($conexion, $actualizarCalidad);
     
 
     $resultado = mysqli_query($conexion, $actualizar);

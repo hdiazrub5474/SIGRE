@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Consultar Requerimientos</title>
+    <title>Consultar Requerimientos para Pruebas</title>
     <link rel="stylesheet" href="css/estilos_consulta.css">
     <link rel="stylesheet" href="css/flexboxgrid.min.css">
     <link rel="stylesheet" href="css/estilos_filtros.css">
@@ -18,12 +18,42 @@
       <form action="" method="post">
        <table class="tabla">    
            <thead>
-                           
+                
+                <?php
+                    //session_start();
+                    $userlogin = $_SESSION['usuario_logueado'];
+                ?>
+                                                                
                <tr>
                 <th align="left">Cliente</th>
                 <th>
                     <input type="text" name="XCliente" align="right">
                 </th>
+                
+                <!--<th>
+                    <select name="XCliente" class="selector">
+                    <option value="">Seleccionar Cliente</option>
+            
+                    <?php
+                        //Se invoca conexion a base de datos
+                        include('conusu.php');
+                        //Se realiza consulta a la tabla
+                        $consulta="SELECT * FROM clientes";
+                        //Se ejecuta consulta
+                        $resultado=mysqli_query($conexion, $consulta);
+                        //Se realiza ciclo para leer tabla y llenar los option
+                        while ($registro = mysqli_fetch_array($resultado)){            
+                            echo "
+                                <option value=".$registro['NomCli'].">"
+                                               .$registro['NomCli']."
+                                </option>
+                                ";
+                        }
+                    ?>
+                    </select>    
+                </th>-->
+                  
+                
                 <th></th>
                 <th align="left">Requerimiento</th>
                 <th align="center">
@@ -79,12 +109,11 @@
         <table cellpadding="2" cellspacing="2" class="lista" id="myTable">
             <thead>
                <tr>
-                <th colspan="16" class="form__titulo">CONSULTA DE SOLICITUDES</th>       
+                <th colspan="14" class="form__titulo">CONSULTA DE SOLICITUDES PARA PRUEBAS</th>       
                </tr>
                
                <tr class="titulo_lista">
                 <th colspan="1" rowspan="1" align="center">No Solicitud</th>
-                <th colspan="1" rowspan="1" align="center">Código</th>
                 <th colspan="1" rowspan="1" align="center">Solicitud</th>
                 <th colspan="1" rowspan="1" align="center">Cliente</th>
                 <th colspan="1" rowspan="1" align="center">Tipo</th>
@@ -97,15 +126,18 @@
                 <th colspan="1" rowspan="1" align="center">Fecha Entrega</th>
                 <th colspan="1" rowspan="1" align="center">Asignado a</th>
                 
-                <th colspan="3" rowspan="1" align="center">FUNCION</th>
+                <th colspan="2" rowspan="1" align="center">FUNCION</th>
                </tr>
             </thead>
             
             <tbody>
                 <?php
+                
                     include('conusu.php');
                 
-                    $where = "";
+                    
+                
+                    $where = "where UsuCal ='".$userlogin."'";
                     
                     if (isset($_POST['XRequerimiento']))
                     {
@@ -148,19 +180,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = "";
+                                                $where = " where UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."'";;
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -169,19 +201,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."'";;
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and UsuCal ='".$userlogin."'";;
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -193,19 +225,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where TipSol ='".$buscar_XTipo."'";
+                                                $where = " where TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -214,19 +246,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."'";;
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";;
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -241,19 +273,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -262,19 +294,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."'";;
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -286,19 +318,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where TipSol <='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where TipSol <='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -307,19 +339,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -337,19 +369,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = "where idReq ='".$buscar_XRequerimiento."'";
+                                                $where = "where idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         { 
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -358,19 +390,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."' and UsuCal='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -382,19 +414,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -403,19 +435,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -430,19 +462,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -451,21 +483,21 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
-                                        }
+                                        } 
                                     }
                                 }else
                                 {
@@ -475,19 +507,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli <='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli <='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol <='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and TipSol <='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }else
@@ -496,19 +528,19 @@
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         } else
                                         {
                                             if (empty($_POST['XFecFin']))
                                             {
-                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             } else
                                             {
-                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."'";
+                                                $where = " where FecSol <='".$buscar_XFecFin."' and FecSol >='".$buscar_XFecIni."' and Estado ='".$buscar_XEstado."' and TipSol ='".$buscar_XTipo."' and CLIENTES_NitCli ='".$buscar_XCliente."' and idReq ='".$buscar_XRequerimiento."' and UsuCal ='".$userlogin."'";
                                             }
                                         }
                                     }
@@ -519,22 +551,21 @@
                 
                     
                 
-                    //echo $where;        
+                    //echo $where; 
+                    //echo $buscar_XCliente;
                 
-                    //session_start();
-                    $userlogin = $_SESSION['usuario_logueado'];
-                
-                
-                    $consulta="SELECT * FROM solicitud JOIN clientes JOIN modulos JOIN calidad ON solicitud.CLIENTES_Nitcli = clientes.Nitcli and solicitud.MODULOS_idMod = modulos.idMod and solicitud.CALIDAD_CodInt = calidad.CodInt $where ORDER BY solicitud.idReq ASC";
+                                    
+                    $consulta="SELECT * FROM solicitud JOIN clientes JOIN modulos JOIN calidad ON solicitud.CLIENTES_Nitcli = clientes.Nitcli and solicitud.MODULOS_idMod = modulos.idMod and solicitud.CALIDAD_CodInt = calidad.CodInt $where";
                     
+                    //echo $consulta;
                 
+                    
                     $resultado=mysqli_query($conexion, $consulta);
             
                     while ($registro = mysqli_fetch_array($resultado)){
                         echo "
                             <tr>
                                 <td width='150'>".$registro['idReq']."</td>
-                                <td width='150'>".$registro['CodInt']."</td>
                                 <td width='150'><a href='DetalleRequerimiento.php?idReq=".$registro['idReq']."'>".$registro['NomReq']."</a></td>
                                 <td width='150'>".$registro['NomCli']."</td>
                                 <td width='150'>".$registro['TipSol']."</td>
@@ -548,9 +579,9 @@
                                 <td width='150'>".$registro['UsuAsig']."</td>
                                 
                                 
-                                <td width='150'><a href='ModificarRequerimiento.php?idReq=".$registro['idReq']."'>Anular</a></td>
-                                <td width='150'><a href='EliminarRequerimiento.php?idReq=".$registro['idReq']."'>Eliminar</a></td>
-                                <td width='150'><a href='AsignarRequerimiento.php?idReq=".$registro['idReq']."'>Asignar</a></td>
+                                
+                                <td width='150'><a href='EntregarCliente.php?idReq=".$registro['idReq']."'>Entregar</a></td>
+                                <td width='150'><a href='RechazarDesarrollo.php?idReq=".$registro['idReq']."'>Rechazar</a></td>
                                                                 
                             </tr>
                             ";
@@ -563,7 +594,7 @@
     </div>
     
     <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="js/TableToExcel.js"></script>    
+    <script src="js/TableToExcel.js"></script>
     
 </body>
 </html>

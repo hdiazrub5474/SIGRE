@@ -135,6 +135,18 @@ input{
     font-size: 14px;
 }
 
+.Excel {
+    
+    background: crimson;
+    color: #fff;
+    margin: auto;
+    padding: 7px 60px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 600px;
+   
+}
 
 
 

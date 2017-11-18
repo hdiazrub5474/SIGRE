@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +23,7 @@
                     <ul>
                       <?php   
                         
-                       session_start();
+                       //session_start();
                        $nivel = $_SESSION['nivel_usuario'];
 
                        //if ($nivel == 1 || $nivel == 2){
@@ -66,7 +70,11 @@
                                 echo "<li><a href='Requerimientos/RegistrarRequerimiento.php'>Registrar Solicitudes</a></li>";
                                 echo "<li><a href='Requerimientos/ConsultarRequerimientos.php'>Consultar Solicitudes</a></li>";
                             }else{
-                                echo "<li><a href='Requerimientos/ConsultarSolicitudIngeniero.php'>Consultar Solicitudes</a></li>";
+                                if ($nivel == 2){
+                                    echo "<li><a href='Requerimientos/ConsultarSolicitudIngeniero.php'>Consultar Solicitudes</a></li>";
+                                }else{
+                                    echo "<li><a href='Requerimientos/ConsultarSolicitudCalidad.php'>Consultar Solicitudes</a></li>";
+                                }
                             }
                         echo "</ul>";
                     echo "</li>";

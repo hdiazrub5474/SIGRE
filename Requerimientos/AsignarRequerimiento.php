@@ -40,17 +40,18 @@
                         
             ?>
             
-            <input type="text" name="idReq" value="<?php echo $registro['idReq'] ?>">
-            <input type="text" name="CodInt" value="<?php echo $registro['CodInt'] ?>" placeholder="" class="input-100" required>
-            <input type="text" name="NomReq" value="<?php echo $registro['NomReq'] ?>" placeholder="" class="input-100" required>
+            <input type="text" name="idReq" value="<?php echo $registro['idReq'] ?>" readonly>
+            <input type="text" name="CodInt" value="<?php echo $registro['CodInt'] ?>" placeholder="" class="input-48"  readonly>
+            <input type="text" name="NomReq" value="<?php echo $registro['NomReq'] ?>" placeholder="" class="input-100" readonly>
+            <input type="text" name="Estado" value="<?php echo $registro['Estado'] ?>" placeholder="" class="input-100" readonly>
             
-            <select name="CodUsu" class="input-100" required  >
+            <select name="CodUsu" class="input-48" required  >
                 <option value="">Seleccionar Usuario</option>
             
             <?php
                 
                 //Se realiza consulta a la tabla
-                $consulta="SELECT * FROM usuarios";
+                $consulta="SELECT * FROM usuarios where PERFILES_idPerfil = 2";
                 //Se ejecuta consulta
                 $resultado=mysqli_query($conexion, $consulta);
                 //Se realiza ciclo para leer tabla y llenar los option
@@ -64,7 +65,7 @@
             ?>
             
             
-            <input type="date" name="FecDes" value="" placeholder="Desarrollo" class="input-48" required>
+            <!--<input type="date" name="FecDes" value="" placeholder="Desarrollo" class="input-48" required>-->
             <input type="date" name="FecCal" value="" placeholder="Calidad" class="input-48" required>
                                                                
              
