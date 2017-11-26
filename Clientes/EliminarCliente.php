@@ -69,7 +69,11 @@
       </script>
                     
     </div>
-    
+    <div>
+        <a href="../menu.php">
+            <img src="img/menu3.jpg" class="ImagenMenu">
+        </a>
+    </div>    
     
     
 </body>

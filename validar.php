@@ -9,6 +9,7 @@ session_start();
 $_SESSION['usuario_logueado']=0;
 $_SESSION['nivel_usuario']=0;
 $_SESSION['id_Usuario']=0;
+$_SESSION['id_Cliente']=0;
 
 $usuario = $_POST['usuario'];
 $clave = $_POST['clave'];
@@ -35,7 +36,7 @@ if ($filas > 0){
      
            $_SESSION['id_Usuario']=$registro['NitUsu'];
            $_SESSION['nivel_usuario']=$registro['PERFILES_idPerfil'];
-        
+           $_SESSION['id_Cliente']=$registro['NitCli'];
          
     }
     //$nivel = $_SESSION['nivel_usuario'];

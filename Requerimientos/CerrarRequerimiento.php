@@ -7,8 +7,8 @@
 </head>
 <body>
    <h1><img src="img/logo_sigre_2.jpg" alt="" class="logo"></h1>
-    <form action="ModRequerimiento.php" method="post" class="form-register" enctype="multipart/form-data">
-        <h2 class="form__titulo">ANULAR REQUERIMIENTO</h2>
+    <form action="CerrarSolicitud.php" method="post" class="form-register" enctype="multipart/form-data">
+        <h2 class="form__titulo">CERRAR REQUERIMIENTO</h2>
         <div class="contenedor-inputs">
             
             <?php
@@ -34,13 +34,8 @@
             <input type="text" name="NomMod" value="<?php echo $registro['NomMod'] ?>" class="input-48"  readonly>
             <input type="text" name="NomCli" value="<?php echo $registro['NomCli'] ?>" class="input-100" readonly>
             
-            <select name="Estado" class="input-48">
-                <option value="<?php echo $registro['Estado'] ?>"><?php echo $registro['Estado'] ?></option>
-                <option value="Anulado">Anulado</option>
-            </select>            
-            
-    
-            <input type="submit" value="MODIFICAR" class="btn-enviar">
+                
+            <input type="submit" value="CERRAR" class="btn-enviar">
             
         </div>
     </form>

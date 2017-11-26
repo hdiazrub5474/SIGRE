@@ -1,23 +1,19 @@
 <?php
 
-$time = time();
-
-//echo $time;
-
 session_start();
 $userlogin = $_SESSION['usuario_logueado'];
-
 
 include 'conusu.php';
 //recibir los datos y almacenarlos en variables
 $idReq = $_POST["idReq"];
 $CodUsu  = $_POST["CodUsu"];
 $CodInt = $_POST["CodInt"];
-//$FecDes = $_POST["FecDes"];
 $FecCal = $_POST["FecCal"];
 $Estado = $_POST["Estado"];
 $NuevoEstado = "Desarrollo";
+$time = time();
 $time = date("Ymd");
+//Variables para envio de correos
 $Email = "hd.solutions.sas@gmail.com";
 $CodInt = $_POST["CodInt"];
 $NomReq = $_POST["NomReq"];

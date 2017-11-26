@@ -109,3 +109,10 @@ input{
     text-align: center;
     font-size: 14px;
 }
+
+.ImagenMenu {
+    width: 150px;
+    height: 30px;
+    margin-left: 700px;
+    margin-top: 20px;
+}

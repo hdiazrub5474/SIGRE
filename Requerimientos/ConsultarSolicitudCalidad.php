@@ -25,49 +25,50 @@
                 ?>
                                                                 
                <tr>
-                <th align="left">Cliente</th>
+                <th align="left"><font color=white >Cliente</font></th>
                 <th>
-                    <input type="text" name="XCliente" align="right">
+                    <!--<input type="text" name="XCliente" align="right">-->
+                    <select name="XCliente" id="" class="selector" >
+                        <option value="">Seleccionar Cliente</option>
+                        <?php
+                            //Se invoca conexion a base de datos
+                            include('conusu.php');
+                            //Se realiza consulta a la tabla
+                            $consulta="SELECT * FROM clientes";
+                            //Se ejecuta consulta
+                            $resultado=mysqli_query($conexion, $consulta);
+                            //Se realiza ciclo para leer tabla y llenar los option
+                            while ($registro = mysqli_fetch_array($resultado)){            
+                                echo "
+                                        <option value=".$registro['NitCli'].">"
+                                                       .$registro['NomCli']."
+                                        </option>
+                                     ";
+                            }
+                        ?>
+                    </select>
                 </th>
                 
-                <!--<th>
-                    <select name="XCliente" class="selector">
-                    <option value="">Seleccionar Cliente</option>
-            
-                    <?php
-                        //Se invoca conexion a base de datos
-                        include('conusu.php');
-                        //Se realiza consulta a la tabla
-                        $consulta="SELECT * FROM clientes";
-                        //Se ejecuta consulta
-                        $resultado=mysqli_query($conexion, $consulta);
-                        //Se realiza ciclo para leer tabla y llenar los option
-                        while ($registro = mysqli_fetch_array($resultado)){            
-                            echo "
-                                <option value=".$registro['NomCli'].">"
-                                               .$registro['NomCli']."
-                                </option>
-                                ";
-                        }
-                    ?>
-                    </select>    
-                </th>-->
-                  
-                
                 <th></th>
-                <th align="left">Requerimiento</th>
+                <th align="left"><font color=white >Requerimiento</font></th>
                 <th align="center">
                     <input type="text" name="XRequerimiento">
                 </th>
                </tr>
                
                <tr>
-                <th align="left">Tipo</th>
+                <th align="left"><font color=white >Tipo</font></th>
                 <th>
-                    <input type="text" name="XTipo" align="right">
+                    <!--<input type="text" name="XTipo" align="right">-->
+                    <select name="XTipo" id="" class="selector" >
+                        <option value="">Seleccionar Tipo</option>
+                        <option value="Nuevo Desarrollo">Nuevo Desarrollo</option>
+                        <option value="Soporte">Soporte</option>
+                        <option value="Inconformidad">Inconformidad</option>
+                    </select>
                 </th>
                 <th></th>
-                <th align="left">Estado</th>
+                <th align="left"><font color=white >Estado</font></th>
                 <th align="center">
                     <!--input type="text" name="XEstado">-->
                     <select name="XEstado" id="" class="selector" >
@@ -83,7 +84,7 @@
                </tr>
                
                <tr>
-                <th align="left">Fecha</th>
+                <th align="left"><font color=white >Fecha</font></th>
                 <th align="left">
                     <input type="date" name="XFecIni" align="right">
                 </th>
@@ -94,6 +95,9 @@
                 </th>
                 <th>
                     <input type="submit" value="Buscar" name="Boton_buscar">
+                </th>
+                <th>
+                    <a href="../menu.php"><img src="img/menu3.jpg"  width="150" height="30"></a>
                 </th>
                </tr>
                 

@@ -66,9 +66,13 @@
                 <?php
                     echo "<li class='submenu'><a href='#'>Requerimientos</a>";
                         echo "<ul>";
-                            if ($nivel == 1){
+                            if ($nivel == 1 || $nivel == 4){
                                 echo "<li><a href='Requerimientos/RegistrarRequerimiento.php'>Registrar Solicitudes</a></li>";
-                                echo "<li><a href='Requerimientos/ConsultarRequerimientos.php'>Consultar Solicitudes</a></li>";
+                                if ($nivel == 1){
+                                    echo "<li><a href='Requerimientos/ConsultarRequerimientos.php'>Consultar Solicitudes</a></li>";
+                                }else{
+                                    echo "<li><a href='Requerimientos/ConsultarSolicitudCliente.php'>Consultar Solicitudes</a></li>";
+                                }
                             }else{
                                 if ($nivel == 2){
                                     echo "<li><a href='Requerimientos/ConsultarSolicitudIngeniero.php'>Consultar Solicitudes</a></li>";
@@ -81,6 +85,7 @@
                 ?>
                 
                 <li><a href="Nosotros/Nosotros.html">Nosotros</a></li>
+                <li><a href="index.html">Salir</a></li>
             </ul>
             
         </nav>

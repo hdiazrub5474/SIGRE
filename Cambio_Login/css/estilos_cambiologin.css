@@ -81,4 +81,9 @@ input{
     transform: scale(1.05);
 }
 
-
+.ImagenMenu {
+    width: 150px;
+    height: 30px;
+    margin-left: 685px;
+    margin-top: 20px;
+}

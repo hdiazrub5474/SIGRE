@@ -41,11 +41,11 @@
             ?>
             
             <input id="VarReq" type="hidden" name="idReq" value="<?php echo $registro['idReq'] ?>">
-            <input type="text" name="CodInt" value="<?php echo $registro['CodInt'] ?>" placeholder="" class="input-100" required>
-            <input type="text" name="NomReq" value="<?php echo $registro['NomReq'] ?>" placeholder="" class="input-100" required>
-            <textarea class="input-textarea"><?php echo $registro['DesReq'] ?></textarea>
-            <input type="text" name="TipSol" value="<?php echo $registro['TipSol'] ?>" placeholder="" class="input-48" required>
-            <input type="text" name="FecSol" value="<?php echo $registro['FecSol'] ?>" placeholder="" class="input-48" required>
+            <input type="text" name="CodInt" value="<?php echo $registro['CodInt'] ?>" placeholder="" class="input-100"  readonly>
+            <input type="text" name="NomReq" value="<?php echo $registro['NomReq'] ?>" placeholder="" class="input-100"  readonly>
+            <textarea class="input-textarea" readonly><?php echo $registro['DesReq'] ?></textarea>
+            <input type="text" name="TipSol" value="<?php echo $registro['TipSol'] ?>" placeholder="" class="input-48"  readonly>
+            <input type="text" name="FecSol" value="<?php echo $registro['FecSol'] ?>" placeholder="" class="input-48"  readonly>
                                                                
             <a class="input-100"
                         href='Archivos/<?php echo $registro['NomRut'] ?>' target="_blank"><?php echo $registro['NomRut'] ?>

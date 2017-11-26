@@ -19,16 +19,28 @@ $Estado = "Pendiente Asignacion";
 $time = date("Ymd");
 $NitCli = '0';
 $TipArc = 'SOLICITUD';
+//Variables para anexar archivo
 $archivo = $_FILES["Anexo"]["tmp_name"];
 $destino = "Archivos/".$_FILES["Anexo"]["name"];
 $nombre = $_FILES["Anexo"]["name"];
+//Variables para envio de correos
+$Email = "hd.solutions.sas@gmail.com";
+$NomUsu = "";
+
+
+//consultar correo del usuario administrador
+$consultaAdm = "SELECT Email, NomUsu FROM usuarios WHERE PERFILES_idPerfil = 1";
+$resultadoconsultaAdm = mysqli_query($conexion, $consultaAdm);
+
+while ($registroAdm = mysqli_fetch_array($resultadoconsultaAdm)){
+    $Email = $registroAdm['Email'];
+    $NomUsu = $registroAdm['NomUsu'];
+}
 
 
 //validar cliente relacionado al usuario
 $consulta = "SELECT * FROM usuarios WHERE CodUsu='$userlogin'";
 $resultado = mysqli_query($conexion, $consulta);
-
-//echo $consulta;
 
 $filas = mysqli_num_rows($resultado);
 if ($filas > 0){
@@ -78,6 +90,13 @@ if (!$resultadoAnexo){
                 window.history.go(-2);
               </script>';
     }else{
+        
+        //envio de correo al usuario confirmando la asignacion del requerimiento
+        $destino = "$Email";
+        $contacto = "Registro Requerimiento Nuevo: " .$CodInt;
+        $contenido = "Señor: " . $NomUsu . " se realizo el registro del requerimiento " . $CodInt . "\nPor favor su gestión ";
+        mail($destino, $contacto, $contenido);
+        
         echo '<script>
                 alert("Solicitud registrada exitosamente");
                 window.history.go(-2);

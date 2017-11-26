@@ -89,3 +89,10 @@ select {
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
+.ImagenMenu {
+    width: 150px;
+    height: 30px;
+    margin-left: 685px;
+    margin-top: 20px;
+}

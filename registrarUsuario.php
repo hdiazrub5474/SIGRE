@@ -1,12 +1,9 @@
 <?php
 
-$time = time();
-
-echo $time;
-
 session_start();
-$userlogin = $_SESSION['usuario_logueado'];
 
+$userlogin = $_SESSION['usuario_logueado'];
+$time = time();
 
 include 'configuracion.php';
 //recibir los datos y almacenarlos en variables
